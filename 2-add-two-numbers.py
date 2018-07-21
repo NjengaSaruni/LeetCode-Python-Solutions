@@ -13,7 +13,12 @@ class ListNode(object):
             previous = current
             current = current.next
 
-        previous.next = ListNode(x)
+        if isinstance(x, list):
+            for i in x:
+                previous.next = ListNode(i)
+                previous = previous.next
+        else:
+            previous.next = ListNode(x)
 
     def __repr__(self):
         repr = ''
@@ -47,6 +52,6 @@ if __name__ == '__main__':
     # unittest.main()
     ln = ListNode(2)
     ln.extend(3)
-    ln.extend(5)
+    ln.extend([1,3,7])
 
     print(ln)
