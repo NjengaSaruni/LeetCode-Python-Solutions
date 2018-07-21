@@ -8,31 +8,41 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
+        if not isinstance(nums, list):
+            return
 
         complements = {}
         keys = {}
         for index, item in enumerate(nums):
-            complements[item] = target - item
+            complement = target - item
+            complements[item] = complement
             if keys.get(item) is None:
                 keys[item] = [index]
             else:
                 keys[item].append(index)
 
-        for item, complement in complements.items():
-            if (complements.get(complement)) is not None:
-                if(keys.get(item) != keys.get(complement)):
-                    return [keys.get(item)[0], keys.get(complement)[0]]
+            if complements.get(complement) is not None:
+                if keys.get(complement) != keys.get(item):
+                    return [keys.get(complement)[0], index]
                 else:
-                    return [keys.get(item)[0], keys.get(item)[1]]
+                    try:
+                        return [keys.get(complement)[0], keys.get(complement)[1]]
+                    except:
+                        continue
 
 
 class TestSolution(unittest.TestCase):
     solution = Solution()
 
     def test_simple(self):
-        ls = [1, 3, 2, 4, 3, 9, 11]
+        ls = [1, 3, 4, 3, 9, 11]
         target = 5
-        self.assertEqual(self.solution.twoSum(ls, target), [0, 3])
+        self.assertEqual(self.solution.twoSum(ls, target), [0, 2])
+
+    def test_null(self):
+        ls = None
+        target = 5
+        self.assertEqual(self.solution.twoSum(ls, target), None)
 
     def test_repeating(self):
         ls = [3, 3]
