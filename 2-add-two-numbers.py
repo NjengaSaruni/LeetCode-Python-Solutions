@@ -38,77 +38,73 @@ class Solution(object):
         :type l2: ListNode
         :rtype: ListNode"""
 
-        pass
 
 
-# class TestSolution(unittest.TestCase):
-#     solution = Solution()
-#
-#     def test_simple(self):
-#         pass
+        currentLN1 = l1
+        currentLN2 = l2
 
+        answer = ListNode(0)
+        currentAnswerNode = answer
+
+        while currentLN1 is not None or currentLN2 is not None:
+            if currentLN1 is None and currentLN2 is not None:
+                if currentLN2.val == 9:
+                    while currentLN2 is not None:
+                        total = currentLN2.val + currentAnswerNode.val
+                        currentAnswerNode.val = total % 10
+                        carry = total // 10
+
+                        currentLN2 = currentLN2.next
+                        currentAnswerNode.next = ListNode(carry)
+                        currentAnswerNode = currentAnswerNode.next
+                else:
+                    currentAnswerNode.val = currentLN2.val + currentAnswerNode.val
+                    currentAnswerNode.next = currentLN2.next
+                break
+
+            elif currentLN2 is None and currentLN1 is not None:
+                if currentLN1.val == 9:
+                    while currentLN1 is not None:
+                        total = currentLN1.val + currentAnswerNode.val
+                        currentAnswerNode.val = total % 10
+                        carry = total // 10
+
+                        currentLN1 = currentLN1.next
+                        currentAnswerNode.next = ListNode(carry)
+                        currentAnswerNode = currentAnswerNode.next
+                else:
+                    currentAnswerNode.val = currentLN1.val + currentAnswerNode.val
+                    currentAnswerNode.next = currentLN1.next
+                break
+
+            else:
+                total = currentLN1.val + currentLN2.val + currentAnswerNode.val
+                currentAnswerNode.val = total % 10
+                carry = total // 10
+
+                currentLN1 = currentLN1.next
+                currentLN2 = currentLN2.next
+                if (currentLN1 is not None or currentLN2 is not None):
+                    currentAnswerNode.next = ListNode(carry)
+                    currentAnswerNode = currentAnswerNode.next
+
+        return answer.__repr__()
+
+
+class TestSolution(unittest.TestCase):
+    solution = Solution()
+
+    def test_simple(self):
+        ln1 = ListNode(2)
+        ln1.extend([1, 3, 7, 4, 8, 3])
+
+        ln2 = ListNode(6)
+        ln2.extend([9, 9, 6, 4, 3, 5, 3])
+
+        llAns = ListNode(8)
+        llAns.extend([0, 3, 4, 9, 1, 9, 3])
+
+        self.assertEqual(self.solution.addTwoNumbers(ln1, ln2), llAns.__repr__())
 
 if __name__ == '__main__':
-    # unittest.main()
-    ln1 = ListNode(2)
-    ln1.extend([1, 3, 7, 4, 8, 3])
-
-    print(ln1)
-
-    ln2 = ListNode(6)
-    ln2.extend([9, 9, 6, 4, 3, 5 ,3])
-
-    print(ln2)
-
-    answer = ListNode(0)
-
-    print(answer)
-
-    currentLN1 = ln1
-    currentLN2 = ln2
-    currentAnswerNode = answer
-
-    while currentLN1 is not None or currentLN2 is not None:
-        if currentLN1 is None and currentLN2 is not None:
-            if currentLN2.val == 9:
-                while currentLN2 is not None:
-                    total = currentLN2.val + currentAnswerNode.val
-                    currentAnswerNode.val = total % 10
-                    carry = total // 10
-
-                    currentLN2 = currentLN2.next
-                    currentAnswerNode.next = ListNode(carry)
-                    currentAnswerNode = currentAnswerNode.next
-            else:
-                currentAnswerNode.val = currentLN2.val + currentAnswerNode.val
-                currentAnswerNode.next = currentLN2.next
-            break
-
-        elif currentLN2 is None and currentLN1 is not None:
-            if currentLN1.val == 9:
-                while currentLN1 is not None:
-                    total = currentLN1.val + currentAnswerNode.val
-                    currentAnswerNode.val = total % 10
-                    carry = total // 10
-
-                    currentLN1 = currentLN1.next
-                    currentAnswerNode.next = ListNode(carry)
-                    currentAnswerNode = currentAnswerNode.next
-            else:
-                currentAnswerNode.val = currentLN1.val + currentAnswerNode.val
-                currentAnswerNode.next = currentLN1.next
-            break
-
-        else:
-            total = currentLN1.val + currentLN2.val + currentAnswerNode.val
-            currentAnswerNode.val = total % 10
-            carry = total // 10
-
-            currentLN1 = currentLN1.next
-            currentLN2 = currentLN2.next
-            if(currentLN1 is not None or currentLN2 is not None):
-                currentAnswerNode.next = ListNode(carry)
-                currentAnswerNode = currentAnswerNode.next
-
-
-    print(answer)
+    unittest.main()
