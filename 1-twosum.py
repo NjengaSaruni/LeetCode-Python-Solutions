@@ -22,11 +22,14 @@ class Solution(object):
                 keys[item].append(index)
 
             if complements.get(complement) is not None:
-                if keys.get(complement) != keys.get(item):
-                    return [keys.get(complement)[0], index]
+                complement_key = keys.get(complement)
+                item_key = keys.get(item)
+
+                if complement_key != item_key:
+                    return [complement_key[0], index]
                 else:
-                    if len(keys.get(complement)) > 1:
-                        return [keys.get(complement)[0], keys.get(complement)[1]]
+                    if len(complement_key) > 1:
+                        return [complement_key[0], complement_key[1]]
                     continue
 
 
