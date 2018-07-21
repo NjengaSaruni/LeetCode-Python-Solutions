@@ -50,8 +50,58 @@ class Solution(object):
 
 if __name__ == '__main__':
     # unittest.main()
-    ln = ListNode(2)
-    ln.extend(3)
-    ln.extend([1,3,7])
+    ln1 = ListNode(2)
+    ln1.extend([1, 3, 7, 4, 8, 3])
 
-    print(ln)
+    print(ln1)
+
+    ln2 = ListNode(6)
+    ln2.extend([9, 9])
+
+    print(ln2)
+
+    answer = ListNode(0)
+
+    print(answer)
+
+    currentLN1 = ln1
+    currentLN2 = ln2
+    currentAnswerNode = answer
+
+    while currentLN1 is not None or currentLN2 is not None:
+        if currentLN1 is None and currentLN2 is not None:
+            while currentLN2 is not None:
+                total = currentLN2.val + currentAnswerNode.val
+                currentAnswerNode.val = total % 10
+                carry = total // 10
+
+                currentLN2 = currentLN2.next
+                currentAnswerNode.next = ListNode(carry)
+                currentAnswerNode = currentAnswerNode.next
+
+            break
+
+        elif currentLN2 is None and currentLN1 is not None:
+            while currentLN1 is not None:
+                total = currentLN1.val + currentAnswerNode.val
+                currentAnswerNode.val = total % 10
+                carry = total // 10
+
+                currentLN1 = currentLN1.next
+                currentAnswerNode.next = ListNode(carry)
+                currentAnswerNode = currentAnswerNode.next
+
+            break
+
+        else:
+            total = currentLN1.val + currentLN2.val + currentAnswerNode.val
+            currentAnswerNode.val = total % 10
+            carry = total // 10
+
+            currentLN1 = currentLN1.next
+            currentLN2 = currentLN2.next
+            currentAnswerNode.next = ListNode(carry)
+            currentAnswerNode = currentAnswerNode.next
+
+
+    print(answer)
