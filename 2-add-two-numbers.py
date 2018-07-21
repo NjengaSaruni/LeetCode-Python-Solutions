@@ -56,7 +56,7 @@ if __name__ == '__main__':
     print(ln1)
 
     ln2 = ListNode(6)
-    ln2.extend([9, 9])
+    ln2.extend([9, 9, 6, 4, 3, 5 ,3])
 
     print(ln2)
 
@@ -70,27 +70,33 @@ if __name__ == '__main__':
 
     while currentLN1 is not None or currentLN2 is not None:
         if currentLN1 is None and currentLN2 is not None:
-            while currentLN2 is not None:
-                total = currentLN2.val + currentAnswerNode.val
-                currentAnswerNode.val = total % 10
-                carry = total // 10
+            if currentLN2.val == 9:
+                while currentLN2 is not None:
+                    total = currentLN2.val + currentAnswerNode.val
+                    currentAnswerNode.val = total % 10
+                    carry = total // 10
 
-                currentLN2 = currentLN2.next
-                currentAnswerNode.next = ListNode(carry)
-                currentAnswerNode = currentAnswerNode.next
-
+                    currentLN2 = currentLN2.next
+                    currentAnswerNode.next = ListNode(carry)
+                    currentAnswerNode = currentAnswerNode.next
+            else:
+                currentAnswerNode.val = currentLN2.val + currentAnswerNode.val
+                currentAnswerNode.next = currentLN2.next
             break
 
         elif currentLN2 is None and currentLN1 is not None:
-            while currentLN1 is not None:
-                total = currentLN1.val + currentAnswerNode.val
-                currentAnswerNode.val = total % 10
-                carry = total // 10
+            if currentLN1.val == 9:
+                while currentLN1 is not None:
+                    total = currentLN1.val + currentAnswerNode.val
+                    currentAnswerNode.val = total % 10
+                    carry = total // 10
 
-                currentLN1 = currentLN1.next
-                currentAnswerNode.next = ListNode(carry)
-                currentAnswerNode = currentAnswerNode.next
-
+                    currentLN1 = currentLN1.next
+                    currentAnswerNode.next = ListNode(carry)
+                    currentAnswerNode = currentAnswerNode.next
+            else:
+                currentAnswerNode.val = currentLN1.val + currentAnswerNode.val
+                currentAnswerNode.next = currentLN1.next
             break
 
         else:
@@ -100,8 +106,9 @@ if __name__ == '__main__':
 
             currentLN1 = currentLN1.next
             currentLN2 = currentLN2.next
-            currentAnswerNode.next = ListNode(carry)
-            currentAnswerNode = currentAnswerNode.next
+            if(currentLN1 is not None or currentLN2 is not None):
+                currentAnswerNode.next = ListNode(carry)
+                currentAnswerNode = currentAnswerNode.next
 
 
     print(answer)
