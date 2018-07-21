@@ -8,7 +8,7 @@ class Solution(object):
         :rtype: int
         """
 
-        longest = ''
+        longest = s[0]
         current = ''
         for i in s:
             if i not in current:
@@ -20,19 +20,22 @@ class Solution(object):
 
             current = i
 
-        return longest
+        return len(longest)
 
 class TestSolution(unittest.TestCase):
     solution = Solution()
 
     def test_simple(self):
-        self.assertEqual(self.solution.lengthOfLongestSubstring('abcabcbb'), 'abc')
+        self.assertEqual(self.solution.lengthOfLongestSubstring('abcabcbb'), 3)
+
+    def test_repeating_chars(self):
+        self.assertEqual(self.solution.lengthOfLongestSubstring('bbbbbbbb'), 1)
 
     def test_single_char(self):
-        self.assertEqual(self.solution.lengthOfLongestSubstring('bbbbbbbb'), 'b')
+        self.assertEqual(self.solution.lengthOfLongestSubstring('b'), 1)
 
     def test_longest_in_middle(self):
-        self.assertEqual(self.solution.lengthOfLongestSubstring('pwwkew'), 'wke')
+        self.assertEqual(self.solution.lengthOfLongestSubstring('pwwkew'), 3)
 
 if __name__ == '__main__':
     unittest.main()
