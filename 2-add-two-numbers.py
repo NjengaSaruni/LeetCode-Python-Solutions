@@ -38,8 +38,6 @@ class Solution(object):
         :type l2: ListNode
         :rtype: ListNode"""
 
-
-
         currentLN1 = l1
         currentLN2 = l2
 
@@ -100,6 +98,7 @@ class Solution(object):
 
         return answer.__repr__()
 
+
 class TestSolution(unittest.TestCase):
     solution = Solution()
 
@@ -120,7 +119,6 @@ class TestSolution(unittest.TestCase):
 
         ln2 = ListNode(5)
 
-
         llAns = ListNode(0)
         llAns.extend([1])
 
@@ -136,6 +134,7 @@ class TestSolution(unittest.TestCase):
         llAns.extend([0, 1])
 
         self.assertEqual(self.solution.addTwoNumbers(ln1, ln2), llAns.__repr__())
+
 
 if __name__ == '__main__':
     unittest.main()
