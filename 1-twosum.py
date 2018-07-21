@@ -25,10 +25,9 @@ class Solution(object):
                 if keys.get(complement) != keys.get(item):
                     return [keys.get(complement)[0], index]
                 else:
-                    try:
+                    if len(keys.get(complement)) > 1:
                         return [keys.get(complement)[0], keys.get(complement)[1]]
-                    except:
-                        continue
+                    continue
 
 
 class TestSolution(unittest.TestCase):
