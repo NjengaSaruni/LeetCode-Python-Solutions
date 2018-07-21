@@ -55,8 +55,12 @@ class Solution(object):
                         carry = total // 10
 
                         currentLN2 = currentLN2.next
-                        currentAnswerNode.next = ListNode(carry)
-                        currentAnswerNode = currentAnswerNode.next
+
+                        if currentLN2 is not None:
+                            currentAnswerNode.next = ListNode(carry)
+                            currentAnswerNode = currentAnswerNode.next
+                        elif carry > 0:
+                            currentAnswerNode.next = ListNode(carry)
                 else:
                     currentAnswerNode.val = currentLN2.val + currentAnswerNode.val
                     currentAnswerNode.next = currentLN2.next
@@ -70,8 +74,11 @@ class Solution(object):
                         carry = total // 10
 
                         currentLN1 = currentLN1.next
-                        currentAnswerNode.next = ListNode(carry)
-                        currentAnswerNode = currentAnswerNode.next
+                        if currentLN1 is not None:
+                            currentAnswerNode.next = ListNode(carry)
+                            currentAnswerNode = currentAnswerNode.next
+                        elif carry > 0:
+                            currentAnswerNode.next = ListNode(carry)
                 else:
                     currentAnswerNode.val = currentLN1.val + currentAnswerNode.val
                     currentAnswerNode.next = currentLN1.next
@@ -84,12 +91,14 @@ class Solution(object):
 
                 currentLN1 = currentLN1.next
                 currentLN2 = currentLN2.next
-                if (currentLN1 is not None or currentLN2 is not None):
+
+                if currentLN1 is not None or currentLN2 is not None:
                     currentAnswerNode.next = ListNode(carry)
                     currentAnswerNode = currentAnswerNode.next
+                elif carry > 0:
+                    currentAnswerNode.next = ListNode(carry)
 
         return answer.__repr__()
-
 
 class TestSolution(unittest.TestCase):
     solution = Solution()
@@ -103,6 +112,28 @@ class TestSolution(unittest.TestCase):
 
         llAns = ListNode(8)
         llAns.extend([0, 3, 4, 9, 1, 9, 3])
+
+        self.assertEqual(self.solution.addTwoNumbers(ln1, ln2), llAns.__repr__())
+
+    def test_single_node_ll(self):
+        ln1 = ListNode(5)
+
+        ln2 = ListNode(5)
+
+
+        llAns = ListNode(0)
+        llAns.extend([1])
+
+        self.assertEqual(self.solution.addTwoNumbers(ln1, ln2), llAns.__repr__())
+
+    def test_ones_and_nines(self):
+        ln1 = ListNode(1)
+
+        ln2 = ListNode(9)
+        ln2.extend(9)
+
+        llAns = ListNode(0)
+        llAns.extend([0, 1])
 
         self.assertEqual(self.solution.addTwoNumbers(ln1, ln2), llAns.__repr__())
 
