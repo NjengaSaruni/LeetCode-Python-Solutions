@@ -49,6 +49,16 @@ class TestSolution(unittest.TestCase):
         target = 20
         self.assertEqual(self.solution.twoSum(ls, target), None)
 
+    def test_no_list(self):
+        ls = []
+        target = 20
+        self.assertEqual(self.solution.twoSum(ls, target), None)
+
+    def test_one_item_in_list(self):
+        ls = [1]
+        target = 1
+        self.assertEqual(self.solution.twoSum(ls, target), None)
+
 
 if __name__ == '__main__':
     unittest.main()
