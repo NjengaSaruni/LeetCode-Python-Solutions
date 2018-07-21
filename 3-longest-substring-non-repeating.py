@@ -8,19 +8,23 @@ class Solution(object):
         :rtype: int
         """
 
-        longest = s[0]
+        longest = ''
         current = ''
         for i in s:
             if i not in current:
                 current += i
+                if len(current) > len(longest):
+                    longest = current
+
                 continue
 
-            if len(current) > len(longest):
-                longest = current
+            current = current[1:] + i
 
-            current = i
+        if not longest:
+            longest = current
 
         return len(longest)
+
 
 class TestSolution(unittest.TestCase):
     solution = Solution()
@@ -36,6 +40,16 @@ class TestSolution(unittest.TestCase):
 
     def test_longest_in_middle(self):
         self.assertEqual(self.solution.lengthOfLongestSubstring('pwwkew'), 3)
+
+    def test_two_chars(self):
+        self.assertEqual(self.solution.lengthOfLongestSubstring('au'), 2)
+
+    def test_non_repeating_after_first(self):
+        self.assertEqual(self.solution.lengthOfLongestSubstring('aab'), 2)
+
+    def test_non_repeating_after_trial(self):
+        self.assertEqual(self.solution.lengthOfLongestSubstring('dvdf'), 3)
+
 
 if __name__ == '__main__':
     unittest.main()
