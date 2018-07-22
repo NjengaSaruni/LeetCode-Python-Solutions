@@ -15,13 +15,9 @@ class Solution(object):
                 current += i
                 if len(current) > len(longest):
                     longest = current
-
                 continue
 
-            current = current[1:] + i
-
-        if not longest:
-            longest = current
+            current = current[current.find(i) + 1:] + i
 
         return len(longest)
 
