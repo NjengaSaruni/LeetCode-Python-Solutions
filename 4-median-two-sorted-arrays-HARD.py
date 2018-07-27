@@ -1,6 +1,5 @@
 import unittest
 
-
 # There are two sorted arrays nums1 and nums2 of size m and n respectively.
 #
 # Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
@@ -49,11 +48,11 @@ class Solution(object):
         self.getLocationOfMedian(median1, nums2)
 
 
-# class TestSolution(unittest.TestCase):
-#     solution = Solution()
-#
-#     def test_simple(self):
-#         self.assertEqual(self.solution.findMedianSortedArrays([1], [1]), 1)
+class TestSolution(unittest.TestCase):
+    solution = Solution()
+
+    def test_simple(self):
+        self.assertEqual(self.solution.findMedianSortedArrays([1], [1]), 1)
 
 
 if __name__ == '__main__':
