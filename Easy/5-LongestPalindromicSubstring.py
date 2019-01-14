@@ -30,14 +30,14 @@ class Solution(object):
 
         while left < right:
             i = right
-
             while i > left:
+                if len(longest) >= i - left:
+                    break
                 sub = s[left:i]
                 if self.isPalindrome(sub) and len(sub) > len(longest):
                     longest = sub
                 i -= 1
             left += 1
-
 
         return longest
 
@@ -52,4 +52,4 @@ class Solution(object):
 
 if __name__ == '__main__':
     sol = Solution()
-    print(sol.longestPalindrome('abcdccdcb'))
+    print(sol.longestPalindrome('arabricririrc'))

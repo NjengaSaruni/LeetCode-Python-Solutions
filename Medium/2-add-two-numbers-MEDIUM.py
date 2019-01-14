@@ -10,6 +10,7 @@ import unittest
 # Output: 7 -> 0 -> 8
 # Explanation: 342 + 465 = 807.
 
+
 class ListNode(object):
     def __init__(self, x):
         self.val = x
@@ -41,6 +42,26 @@ class ListNode(object):
 
 
 class Solution(object):
+    def addStrings(self, l1, l2):
+        str_1 = ''
+        str_2 = ''
+
+        temp = l1
+        while temp is not None:
+            str_1 = str(l1.val) + str_1
+            temp = temp.next
+
+        temp = l2
+        while temp is not None:
+            str_2 = str(l2.val) + str_2
+            temp = temp.next
+
+        a = int(str_1)
+        b = int(str_2)
+
+        print(a + b)
+
+
     def addTwoNumbers(self, l1, l2):
         """
         :type l1: ListNode
@@ -121,7 +142,7 @@ class TestSolution(unittest.TestCase):
         llAns = ListNode(8)
         llAns.extend([0, 3, 4, 9, 1, 9, 3])
 
-        self.assertEqual(self.solution.addTwoNumbers(ln1, ln2), llAns.__repr__())
+        self.assertEqual(self.solution.addStrings(ln1, ln2), llAns.__repr__())
 
     def test_single_node_ll(self):
         ln1 = ListNode(5)
@@ -131,7 +152,7 @@ class TestSolution(unittest.TestCase):
         llAns = ListNode(0)
         llAns.extend([1])
 
-        self.assertEqual(self.solution.addTwoNumbers(ln1, ln2), llAns.__repr__())
+        self.assertEqual(self.solution.addStrings(ln1, ln2), llAns.__repr__())
 
     def test_ones_and_nines(self):
         ln1 = ListNode(1)
@@ -142,7 +163,7 @@ class TestSolution(unittest.TestCase):
         llAns = ListNode(0)
         llAns.extend([0, 1])
 
-        self.assertEqual(self.solution.addTwoNumbers(ln1, ln2), llAns.__repr__())
+        self.assertEqual(self.solution.addStrings(ln1, ln2), llAns.__repr__())
 
 
 if __name__ == '__main__':
