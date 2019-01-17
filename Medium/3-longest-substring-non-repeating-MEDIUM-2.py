@@ -12,6 +12,8 @@
 # Output: 3
 # Explanation: The answer is "wke", with the length of 3.
 #              Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
+import unittest
+
 
 def lengthOfLongestSubstring(s):
     """
@@ -37,11 +39,34 @@ def lengthOfLongestSubstring(s):
 
             j += 1
         i += 1
-
+    print('\a')
     return len(longest)
+
+def longest_window(s):
+    left = 0
+    right = 0
+
+    longest = set('')
+
+    for i in s:
+        pass
+
+
+class TestSolution(unittest.TestCase):
+    def setUp(self):
+        self.function = longest_window
+
+    def test_simple(self):
+        self.assertEqual(self.function('abc'), 3)
+
+    def test_empty_string(self):
+        self.assertEqual(self.function(''), 0)
+
+    def test_duplicates(self):
+        self.assertEqual(self.function('aaadasdasdasdasdassaa'), 3)
 
 
 if __name__ == '__main__':
-    print(lengthOfLongestSubstring('sdabbbbaxasdsadsefdsfscacdfacdaa'))
+    unittest.main()
 
 
