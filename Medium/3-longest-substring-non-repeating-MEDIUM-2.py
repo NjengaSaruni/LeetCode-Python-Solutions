@@ -63,7 +63,7 @@ class TestSolution(unittest.TestCase):
         self.assertEqual(self.function(''), 0)
 
     def test_duplicates(self):
-        self.assertEqual(self.function('aaadasdasdasdasdassaa'), 3)
+        self.assertEqual(self.function('aaadasdasdasdasdassaapoiy'), 5)
 
 
 if __name__ == '__main__':
