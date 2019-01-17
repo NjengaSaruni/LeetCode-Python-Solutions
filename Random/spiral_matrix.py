@@ -2,6 +2,8 @@ import unittest
 
 
 def spiral(order):
+    assert isinstance(order, int)
+
     mid = order // 2
     matrix = [[0 for i in range(order)] for j in range(order)]
 
@@ -83,6 +85,10 @@ class TestSolution(unittest.TestCase):
                 [21, 22, 23, 24, 25]
             ]
         )
+
+    def test_incorrect(self):
+        with self.assertRaises(AssertionError):
+            self.function('a'),
 
 
 if __name__ == '__main__':
