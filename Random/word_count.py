@@ -1,9 +1,12 @@
 import unittest
 def most_frequent(s):
     words = s.split(' ')
-    _map = {}
+    _map = dict()
     for word in words:
-        _map.update(_map[word] + 1, 1)
+        if _map.__contains__(word):
+            _map[word] += 1
+        else:
+            _map[word] = 1
 
     print(_map)
     most = 0
