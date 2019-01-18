@@ -9,6 +9,7 @@ def first_reoccuring(s):
 
     return None
 
+
 class TestSolution(unittest.TestCase):
 
     def test_simple(self):
