@@ -2,7 +2,12 @@ import unittest
 from typing import List
 
 
-def all_unique(s):
+def all_unique(s: str) -> bool:
+    """
+    Returns true if string contains all unique characters
+    :rtype: bool
+    :type s: str
+    """
     value: List[bool] = [False for _ in range(256)]
 
     for i in s:
