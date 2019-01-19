@@ -8,13 +8,15 @@ def staircase(height):
         return 2
     return staircase(height - 1) + staircase(height - 2)
 
+
 def staircase_dp(height):
-    ls = [1 for i in  range(height + 1)]
+    ls = [1 for i in range(height + 1)]
 
     for i in range(2, height + 1):
         ls[i] = ls[i - 1] + ls[i - 2]
 
     return ls[height]
+
 
 class TestSolution(unittest.TestCase):
     def test_height_3(self):
