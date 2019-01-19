@@ -1,8 +1,9 @@
 import unittest
+from typing import List
 
 
 def all_unique(s):
-    value = [False for i in range(256)]
+    value: List[bool] = [False for _ in range(256)]
 
     for i in s:
         if value[ord(i)]:
