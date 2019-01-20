@@ -29,7 +29,6 @@ def mergeSort(ls):
         ans.append(right[j])
         j += 1
 
-    print(ans)
     return ans
 
 
