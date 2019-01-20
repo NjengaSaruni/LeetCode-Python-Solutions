@@ -36,17 +36,7 @@ class Solution(object):
             else:
                 carry += 1
 
-            if carry == 0:
-                ans = '0' + ans
-            if carry == 1:
-                ans = '1' + ans
-                carry = 0
-            if carry == 2:
-                ans = '0' + ans
-                carry = 1
-            if carry == 3:
-                ans = '1' + ans
-                carry = 1
+            ans, carry = self.get_new_carry(ans, carry)
 
             leftA -= 1
             leftB -= 1
@@ -55,29 +45,14 @@ class Solution(object):
             if a[leftA] == '1':
                 carry += 1
 
-            if carry == 0:
-                ans = '0' + ans
-            if carry == 1:
-                ans = '1' + ans
-                carry = 0
-            if carry == 2:
-                ans = '0' + ans
-                carry = 1
-
+            ans, carry = self.get_new_carry(ans, carry)
             leftA -= 1
 
         while leftB >= 0:
             if b[leftB] == '1':
                 carry += 1
 
-            if carry == 0:
-                ans = '0' + ans
-            if carry == 1:
-                ans = '1' + ans
-                carry = 0
-            if carry == 2:
-                ans = '0' + ans
-                carry = 1
+            ans, carry = self.get_new_carry(ans, carry)
 
             leftB -= 1
 
@@ -85,6 +60,21 @@ class Solution(object):
             ans = '1' + ans
 
         return ans
+
+    def get_new_carry(self, ans, carry):
+        if carry == 0:
+            ans = '0' + ans
+        if carry == 1:
+            ans = '1' + ans
+            carry = 0
+        if carry == 2:
+            ans = '0' + ans
+            carry = 1
+        if carry == 3:
+            ans = '1' + ans
+            carry = 1
+        return ans, carry
+
 
 if __name__ == '__main__':
     unittest.main()
