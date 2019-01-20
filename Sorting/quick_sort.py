@@ -5,9 +5,6 @@ def quick_sort(ls, left=0, right=None):
     if right is None:
         right = len(ls) - 1
 
-    if left >= right:
-        return ls
-
     pivot = ls[right]
     i = left
     lock = left
@@ -19,9 +16,10 @@ def quick_sort(ls, left=0, right=None):
 
         i += 1
 
-    ls[lock], ls[right] = ls[right], ls[lock]
-    quick_sort(ls, left, lock - 1)
-    quick_sort(ls, lock + 1, right)
+    if left < right:
+        ls[lock], ls[right] = ls[right], ls[lock]
+        quick_sort(ls, left, lock - 1)
+        quick_sort(ls, lock + 1, right)
 
     return ls
 
