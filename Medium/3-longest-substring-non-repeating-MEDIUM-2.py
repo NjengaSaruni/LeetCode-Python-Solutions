@@ -42,14 +42,27 @@ def lengthOfLongestSubstring(s):
     print('\a')
     return len(longest)
 
-def longest_window(s):
+def longest_window(str):
+    _set = set()
+    longest = 0
     left = 0
     right = 0
 
-    longest = set('')
+    while right < len(str):
+        if str[right] in _set:
+            longest = longest if longest > right - left else right - left
+            reset = set(str[left])
+            while str[left] != str[right]:
+                left += 1
+                reset.add(str[left])
 
-    for i in s:
-        pass
+            left += 1
+            _set -= reset
+        else:
+            _set.add(str[right])
+            right += 1
+
+    return longest if longest > right - left else right - left
 
 
 class TestSolution(unittest.TestCase):
