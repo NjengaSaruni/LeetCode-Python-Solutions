@@ -10,7 +10,7 @@ def quick_sort(ls, left=0, right=None):
     lock = left
 
     while i < right:
-        if ls[i] <= pivot:
+        if ls[i] < pivot:
             ls[i], ls[lock] = ls[lock], ls[i]
             lock += 1
 
