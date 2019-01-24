@@ -18,6 +18,9 @@ class TestSolution(unittest.TestCase):
     def test_non_recurring(self):
         self.assertEqual(first_reoccuring('abcd'), None)
 
+    def test_long_recurring(self):
+        self.assertEqual(first_reoccuring('abcdjsdjsd'), 'd')
+
 
 if __name__ == '__main__':
     unittest.main()
