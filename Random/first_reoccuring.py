@@ -15,13 +15,13 @@ class TestSolution(unittest.TestCase):
     def test_simple(self):
         self.assertEqual(first_reoccuring('abca'), 'a')
 
-    def test_non_recurring(self):
+    def test_non_reocurring(self):
         self.assertEqual(first_reoccuring('abcd'), None)
 
-    def test_long_recurring(self):
+    def test_long_reocurring(self):
         self.assertEqual(first_reoccuring('abcdjsdjsd'), 'd')
 
-    def test_long_non_recurring(self):
+    def test_long_non_reocurring(self):
         self.assertEqual(first_reoccuring('abcdefghijklmnopqrstuvwxyz'),  None)
 
 if __name__ == '__main__':
