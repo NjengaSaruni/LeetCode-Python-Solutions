@@ -1,5 +1,6 @@
 import unittest
 
+
 def first_reoccuring(s):
     _set = set()
     for i in s:
@@ -22,7 +23,8 @@ class TestSolution(unittest.TestCase):
         self.assertEqual(first_reoccuring('abcdjsdjsd'), 'd')
 
     def test_long_non_reocurring(self):
-        self.assertEqual(first_reoccuring('abcdefghijklmnopqrstuvwxyz'),  None)
+        self.assertEqual(first_reoccuring('abcdefghijklmnopqrstuvwxyz'), None)
+
 
 if __name__ == '__main__':
     unittest.main()
