@@ -10,26 +10,25 @@ def is_matched(value: str) -> bool:
         return False
 
     stack = []
+    lefty = '({['
+    righty = ')}]'
+
     for char in value:
-        if char == '(':
-            stack.append('(')
-        elif char == '{':
-            stack.append('{')
-        elif char == '[':
-            stack.append('[')
-        elif char in [')', '}', ']'] and len(stack) > 0:
-            if char == ')' and stack.pop() != '(':
-                return False
-            if char == '}' and stack.pop() != '{':
-                return False
-            if char == ']' and stack.pop() != '[':
+        if char in lefty:
+            stack.append(char)
+        elif char in righty and len(stack) > 0:
+            if stack.pop() != lefty[righty.index(char)]:
                 return False
         else:
             return False
 
     return len(stack) == 0
 
+
 class TestMatchingParenteses(unittest.TestCase):
 
-    def test_brackets(self):
-        self.assertTrue(is_matched('{()}'))
+    def test_brackets_squares(self):
+        self.assertTrue(is_matched('([{}])'))
+
+    def test_brackets_squares_unmatched(self):
+        self.assertFalse(is_matched('{()]'))
