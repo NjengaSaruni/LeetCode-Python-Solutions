@@ -6,9 +6,6 @@ if __name__ == '__main__':
 
 
 def is_matched(value: str) -> bool:
-    if len(value) % 2 == 1:
-        return False
-
     stack = []
     lefty = '({['
     righty = ')}]'
@@ -19,16 +16,17 @@ def is_matched(value: str) -> bool:
         elif char in righty and len(stack) > 0:
             if stack.pop() != lefty[righty.index(char)]:
                 return False
-        else:
-            return False
 
     return len(stack) == 0
 
 
-class TestMatchingParenteses(unittest.TestCase):
+class TestMatchingParentheses(unittest.TestCase):
 
     def test_brackets_squares(self):
         self.assertTrue(is_matched('([{}])'))
 
     def test_brackets_squares_unmatched(self):
         self.assertFalse(is_matched('{()]'))
+
+    def test_mathematical(self):
+        self.assertTrue(is_matched('[(5+x)-(y+z)]'))
