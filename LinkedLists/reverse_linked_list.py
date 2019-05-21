@@ -1,4 +1,4 @@
-from LinkedLists.singly_linked_list import SinglyLinkedListNode, random_linked_list, print_linked_list
+from LinkedLists.singly_linked_list import random_linked_list, print_linked_list
 
 if __name__ == '__main__':
     head = random_linked_list(10)
