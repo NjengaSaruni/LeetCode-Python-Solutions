@@ -1,3 +1,6 @@
+import random
+
+
 class SinglyLinkedListNode:
 
     def __init__(self, data):
@@ -20,3 +23,15 @@ def print_linked_list(head: SinglyLinkedListNode):
 
     print(f'{string_rep} => None')
     return f'{string_rep} => None'
+
+
+def random_linked_list(length: int) -> SinglyLinkedListNode:
+    head = SinglyLinkedListNode(random.randint(0, 100))
+
+    current = head
+    for i in range(length - 1):
+        value = random.randint(0, 100)
+        current.next = add_to_linked_list(current, value)
+        current = current.next
+
+    return head
