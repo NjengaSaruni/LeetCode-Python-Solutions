@@ -3,7 +3,7 @@ import random
 
 class SinglyLinkedListNode:
 
-    def __init__(self, data):
+    def __init__(self, data = None):
         self.data = data
         self.next = None
 

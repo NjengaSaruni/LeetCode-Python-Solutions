@@ -1,3 +1,5 @@
+# Courtesy of the TechLead
+
 from LinkedLists.singly_linked_list import random_linked_list, print_linked_list
 
 if __name__ == '__main__':
