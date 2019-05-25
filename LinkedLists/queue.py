@@ -6,6 +6,3 @@ class SLLQueue:
     def __init__(self):
         self.header = SinglyLinkedListNode(None)
         self.tail = SinglyLinkedListNode(None)
-
-        self.header.next = self.tail
-        self.
