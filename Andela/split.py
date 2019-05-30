@@ -10,6 +10,8 @@ def splitInteger(num, parts):
     for i in range(-1, -remainder, -1):
         items[i] += 1
 
+
+    "".split()
     return items
 
 import unittest
