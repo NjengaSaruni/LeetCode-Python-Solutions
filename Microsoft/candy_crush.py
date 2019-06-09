@@ -1,6 +1,7 @@
 import unittest
 from typing import List
 
+
 class ListNode(object):
     """
     Represents a singly linked list's node
@@ -47,6 +48,34 @@ class ListNode(object):
 
         return f'{string_representation}None'
 
+    def candy_crush(self):
+        """
+        Removes all nodes in the linked list that have adjacent nodes with the same value
+        :return: A candy crushed version of the ListNode
+        """
+
+        current = self
+
+        # The candy crushed version of a linked list with just one node is itself
+        if current and current.next:
+
+            # If the next value in the node are different, then next is the candy crushed version of the next node
+            if current.value != current.next.value:
+                current.next = current.next.candy_crush()
+
+            # Skip all elements until you find a dissimilar one
+            else:
+                while current.next and current.value == current.next.value:
+                    current = current.next
+
+                # The next node after the last adjacently similar element should be the next element candy crushed
+                if current.next:
+                    current = current.next.candy_crush()
+                else:
+                    current = None
+
+        return current
+
 
 class SinglyLinkedList(object):
     """
@@ -61,6 +90,12 @@ class SinglyLinkedList(object):
         self.root = root
 
     def create(self, values: List[object]):
+        """
+        Creates a singly linked list serially from a list of values supplied to it
+        :param values: The values to be stored serially at the nodes in the linked list
+        :return: A SinglyLinkedList instance with the values in the values parameter stored serially at the nodes
+                in the linked list.
+        """
         if not values:
             return None
 
@@ -87,13 +122,58 @@ class SinglyLinkedList(object):
         return str(self.root)
 
     def __eq__(self, other):
+        """
+        Compare two linked lists for structural inequality
+        :param other:
+        :return:
+        """
         return self.root == other.root
 
-if __name__  == '__main__':
-    sll = SinglyLinkedList()
-    sll.create(values=[1, 4, 5, 6, 6, 7, 8, 10, 10])
-    print(sll)
+    def candy_crush(self):
+        """
+        Returns the candy crushed version of the root node in the linked list
+        :return: self, candy crushed serially from the root
+        """
+        self.root = self.root.candy_crush()
+
+        return self
 
 
+class TestLinkedList(unittest.TestCase):
+    def setUp(self) -> None:
+        # Instantiante two empty linked lists to be reused in the tests
+        self.ll1 = SinglyLinkedList()
+        self.ll2 = SinglyLinkedList()
+
+    def test_none_equality(self):
+        """
+        By default, empty linked lists should be considered equal
+        :return:
+        """
+
+        self.assertEqual(self.ll1, self.ll2)
+
+    def test_two_short_linked_lists(self):
+        """
+        Creating two linked lists from the same list should result in structurally equal linked lists
+        :return:
+        """
+
+        values = [1, 3, 4, 6, 6, 8]
+        self.assertEqual(self.ll1.create(values), self.ll2.create(values))
+
+    def test_candy_crush_of_linked_list_starting_with_similar_elements(self):
+        """
+        All similar elements in the beginning of a linked list should be candily crushed out. d
+        :return:
+        """
+        long = [1, 1, 1, 1, 5, 6, 6, 4, 3, 3, 10]
+        crushed = [5, 4, 10]
+
+        self.setUp()
+
+        self.assertEqual(self.ll1.create(long).candy_crush(), self.ll2.create(crushed))
 
 
+if __name__ == '__main__':
+    unittest.main()
