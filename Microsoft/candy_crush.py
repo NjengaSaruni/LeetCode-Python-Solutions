@@ -58,14 +58,6 @@ class SinglyLinkedList(object):
 
         return f'{string_representation}None'
 
-    def print(self):
-        """
-        Prints the __str__ representation of the singly linked list
-        :return: None
-        """
-
-        print(self)
-
 
 if __name__  == '__main__':
     sll = SinglyLinkedList()
