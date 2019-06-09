@@ -141,7 +141,8 @@ class SinglyLinkedList(object):
 
 class TestLinkedList(unittest.TestCase):
     def setUp(self) -> None:
-        # Instantiante two empty linked lists to be reused in the tests
+
+        # Instantiate two empty linked lists to be reused in the tests
         self.ll1 = SinglyLinkedList()
         self.ll2 = SinglyLinkedList()
 
