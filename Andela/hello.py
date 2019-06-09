@@ -12,6 +12,10 @@ def say_hello(name):
 
 import unittest
 
+
+if __name__ == '__main__':
+    unittest.main()
+
 # These example test cases are editable, feel free to add
 # your own tests to debug your code.
 
