@@ -175,6 +175,18 @@ class TestLinkedList(unittest.TestCase):
 
         self.assertEqual(self.ll1.create(long).candy_crush(), self.ll2.create(crushed))
 
+    def test_candy_crush_of_linked_list_ending_with_similar_elements(self):
+        """
+        All similar elements in the end of a linked list should be candily crushed out. d
+        :return:
+        """
+        long = [1, 1, 1, 1, 5, 6, 6, 4, 3, 3, 10, 10, 10]
+        crushed = [5, 4]
+
+        self.setUp()
+
+        self.assertEqual(self.ll1.create(long).candy_crush(), self.ll2.create(crushed))
+
 
 if __name__ == '__main__':
     unittest.main()
