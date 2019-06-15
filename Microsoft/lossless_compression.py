@@ -47,5 +47,28 @@ class Compressor(object):
 
         return answer
 
+    @classmethod
+    def recursive_decompression(cls, compressed: str) -> str:
+        return Compressor.recursive_decompression_helper(compressed, 0, '', 0, '')
+
+
+    @classmethod
+    def recursive_decompression_helper(cls, compressed: str, count, last_character, index, answer) -> str:
+        if index == len(compressed) - 1:
+            answer += int(count) * last_character
+
+        elif compressed[index].isdigit():
+            count += compressed[index]
+            return Compressor.recursive_decompression_helper(compressed, count, last_character, index + 1, answer)
+
+        else:
+            answer += int(count) * last_character
+            last_character = compressed[index]
+            answer += Compressor.recursive_decompression_helper(compressed, '0', last_character, index + 1, answer)
+
+        return answer
+
+
 if __name__ == '__main__':
-    print(Compressor.recursive_compression('aaaaaaaaaabbbccll'))
+    # print(Compressor.recursive_compression('aaaaaaaaaabbbccll'))
+    print(Compressor.recursive_decompression('a10c2'))
