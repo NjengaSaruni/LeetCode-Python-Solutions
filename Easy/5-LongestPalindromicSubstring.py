@@ -41,7 +41,6 @@ class Solution(object):
 
         return longest
 
-
     def longestPalindrome(self, s):
         """
         :type s: str
@@ -49,6 +48,7 @@ class Solution(object):
         """
 
         return self.usingSlicing(s)
+
 
 if __name__ == '__main__':
     sol = Solution()

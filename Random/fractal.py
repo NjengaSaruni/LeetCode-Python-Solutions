@@ -14,4 +14,4 @@ def fractal(folds):
 
 
 if __name__ == '__main__':
-    print(fractal(3))
+    print(fractal(4))

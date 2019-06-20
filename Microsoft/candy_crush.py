@@ -55,12 +55,14 @@ class ListNode(object):
         """
 
         current = self
+        stack = []
 
         # The candy crushed version of a linked list with just one node is itself
         if current and current.next:
 
             # If the next value in the node are different, then next is the candy crushed version of the next node
             if current.value != current.next.value:
+                stack.append(current)
                 current.next = current.next.candy_crush()
 
             # Skip all elements until you find a dissimilar one
@@ -168,8 +170,8 @@ class TestLinkedList(unittest.TestCase):
         All similar elements in the beginning of a linked list should be candily crushed out. d
         :return:
         """
-        long = [1, 1, 1, 1, 5, 6, 6, 4, 3, 3, 10]
-        crushed = [5, 4, 10]
+        long = [1, 1, 1, 1, 4, 6, 6, 4, 3, 3, 10]
+        crushed = [5, 10]
 
         self.setUp()
 
