@@ -9,36 +9,23 @@ def is_palindrome(string):
     return left >= right
 
 
-def longest_palindromic_substring(string):
+def longest_palindromic_substring(s):
     longest = ''
 
     MAX_LEFT = 0
-    MAX_RIGHT = len(string) - 1
+    MAX_RIGHT = len(s) - 1
 
-    for index, character in enumerate(string):
+    for index, character in enumerate(s):
 
         # This is the odd iteration
-        odd_longest = character
-        left = index - 1
-        right = index + 1
-        while left >= MAX_LEFT and right <= MAX_RIGHT and string[left] == string[right]:
-            odd_longest = string[left] + odd_longest + string[right]
-            left -= 1
-            right += 1
+        odd_longest = middle_out(MAX_LEFT, MAX_RIGHT, character * 2, index, index - 1, index + 1, s)
 
         if len(longest) < len(odd_longest):
             longest = odd_longest
 
         # This is the even iteration
-        if index + 1 <= MAX_RIGHT and string[index + 1] == character:
-            even_longest = character + character
-            left = index - 1
-            right = index + 2
-
-            while left >= MAX_LEFT and right <= MAX_RIGHT and string[left] == string[right]:
-                even_longest = string[left] + even_longest + string[right]
-                left -= 1
-                right += 1
+        if index + 1 <= MAX_RIGHT and s[index + 1] == character:
+            even_longest = middle_out(MAX_LEFT, MAX_RIGHT, character * 2, index, index - 1, index + 2, s)
 
             if len(longest) < len(even_longest):
                 longest = even_longest
@@ -46,5 +33,13 @@ def longest_palindromic_substring(string):
     return longest
 
 
+def middle_out(MAX_LEFT, MAX_RIGHT, even_longest, index, left, right, s):
+    while left >= MAX_LEFT and right <= MAX_RIGHT and s[left] == s[right]:
+        even_longest = s[left] + even_longest + s[right]
+        left -= 1
+        right += 1
+    return even_longest
+
+
 if __name__ == '__main__':
-    print(longest_palindromic_substring('aabbaaa'))
+    print(longest_palindromic_substring('abba'))
