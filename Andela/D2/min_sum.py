@@ -1,10 +1,13 @@
 import math
+import heapq
 
 def minSum(num, k):
     # Perform while k still has a value
+
+    heapq._heapify_max(num)
+
     while k > 0:
-        highest = max(num)
-        num[num.index(highest)] = math.ceil(highest / 2)
+        heapq._heapreplace_max(num, math.ceil(num[0] / 2))
         k -= 1
 
     return sum(num)
