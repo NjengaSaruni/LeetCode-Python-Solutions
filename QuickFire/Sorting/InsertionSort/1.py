@@ -5,8 +5,8 @@ from typing import List
 if __name__ == '__main__':
     unittest.main()
 
-def insertion_sort(array: List[int]):
 
+def insertion_sort(array: List[int]):
     for i in range(len(array) - 1):
         j = i + 1
         index = i
@@ -17,6 +17,7 @@ def insertion_sort(array: List[int]):
             j += 1
 
         array[i], array[index] = array[index], array[i]
+
 
 class TestInsertionSort(unittest.TestCase):
 
