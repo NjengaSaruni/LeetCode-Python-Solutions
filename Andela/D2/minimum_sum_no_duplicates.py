@@ -20,4 +20,4 @@ def getMinimumUniqueSum(arr):
     return sum(unique)
 
 if __name__ == '__main__':
-    print(getMinimumUniqueSum([1,2,2,1,1,1,-1]))
+    print(getMinimumUniqueSum([-1, 10, 9, -1, 2, 10, 8, 11]))

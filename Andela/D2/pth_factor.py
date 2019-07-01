@@ -25,4 +25,4 @@ def pthFactor(n, p):
     return factors[p - 1]
 
 if __name__ == '__main__':
-    print(pthFactor(30000, 10))
+    print(pthFactor(30000, 3))
