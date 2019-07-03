@@ -2,7 +2,6 @@ import math
 import heapq
 
 def minSum(num, k):
-    # Perform while k still has a value
 
     heapq._heapify_max(num)
 
